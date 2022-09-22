@@ -1,0 +1,4 @@
+[submodule "TTS"]
+	path = TTS
+	url = git@github.com:paeyovupc/TTS.git
+	branch = dev
