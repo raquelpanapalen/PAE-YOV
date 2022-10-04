@@ -17,7 +17,7 @@ function _usage() {
 function _setup() {
     [[ $# -lt 1 ]] && _error_msg "Give a database folder" && _usage
 
-    DATABASE_FOLDER=$1
+    DATABASE_FOLDER="$(dirname $1)/$(basename $1)"
     OUTPUT_FOLDER="${DATABASE_FOLDER}_normalized"
 
     if [ -d $OUTPUT_FOLDER ]; then
@@ -25,6 +25,10 @@ function _setup() {
     else
         mkdir $OUTPUT_FOLDER
     fi
+}
+
+function _cleanup() {
+    tput cnorm
 }
 
 function main() {
@@ -49,5 +53,9 @@ function main() {
     _progress $i $database_size && echo
     _info_msg "Procesing finished!"
 }
+
+# Hide cursor while running script
+trap _cleanup EXIT
+tput civis
 
 main $@
