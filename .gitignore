@@ -1,5 +1,7 @@
-# Python venv
+# Python ignores
 .yov-venv
+__pycache__/
+*.pyc
 
 # Databases folder
 databases
