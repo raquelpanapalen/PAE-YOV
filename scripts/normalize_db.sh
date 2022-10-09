@@ -11,15 +11,15 @@ OUTPUT_FOLDER=""
 OUTPUT_SAMPLE_RATE=22050
 
 function _usage() {
-    echo "Usage: $0 <database_folder>"
+    echo "Usage: $0 <database_folder> <output_database>"
     exit 1
 }
 
 function _setup() {
-    [[ $# -lt 1 ]] && _error_msg "Give a database folder" && _usage
+    [[ $# -lt 2 ]] && _error_msg "Give a database folder" && _usage
 
     DATABASE_FOLDER="$(dirname $1)/$(basename $1)"
-    OUTPUT_FOLDER="${DATABASE_FOLDER}_normalized"
+    OUTPUT_FOLDER="$(dirname $2)/$(basename $2)"
 
     if [ -d $OUTPUT_FOLDER ]; then
         _warn_msg "Directory ${OUTPUT_FOLDER} exists, overwriting!"
@@ -66,3 +66,4 @@ trap _cleanup EXIT
 tput civis
 
 main $@
+
