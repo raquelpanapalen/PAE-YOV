@@ -9,23 +9,34 @@ only want to run tts with the ecomputed models just use `pip install TTS`.
 git clone --recurse-submodules -j8 https://github.com/raquelpanapalen/PAE-YOV.git
 cd PAE-YOV
 python3 -m venv .yov-venv
-source .yov-venv
+source .yov-venv/bin/activate
 cd TTS
 make install
 ```
 
 ## Server installation
-On the server we need to install a specific CUDA version is needed (11.X),
-since the lower versions do not support the required CUDA capability (sm_86,
+On the server we need to install a specific CUDA version (v.11.X),
+since the lower versions do not support the required CUDA capability (`sm_86`,
 Ampere architecture).
 
 ```sh
 git clone --recurse-submodules -j8 https://github.com/raquelpanapalen/PAE-YOV.git
 cd PAE-YOV
 python3 -m venv .yov-venv
-source .yov-venv
+source .yov-venv/bin/activate
 pip3 install torch torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
 cd TTS
 make install
 ```
 
+# Maintenance
+
+How to keep up to date the repo. Keep in mind that the submodules point to a
+specific commit hash, not to a branch. You can set the branch you want to
+follow, but it will just point to the most recent commit (After running the
+following commands).
+
+```sh
+git pull
+git submodule update --recursive --remote --progress
+```
