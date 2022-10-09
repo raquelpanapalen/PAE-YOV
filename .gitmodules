@@ -2,3 +2,7 @@
 	path = TTS
 	url = git@github.com:paeyovupc/TTS.git
 	branch = dev
+[submodule "YOV-WEB"]
+	path = YOV-WEB
+	url = git@github.com:paeyovupc/YOV-WEB.git
+	branch = master
