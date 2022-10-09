@@ -58,6 +58,7 @@ function main() {
         # Description of each step:
         # - Resample
         # - Join all channels into one
+        # - Normalize to -3 dB (max value is at -3dB)
         # - Trim beginning silences
         # - Leave short duration silences between speech
         # - Reverse audio
@@ -65,6 +66,7 @@ function main() {
         # - Reverse audio
         sox $file -r $OUTPUT_SAMPLE_RATE $out_file \
             remix - \
+            gain -n -3 \
             silence 1 0.1 1% \
             -1 0.50 1% \
             reverse \
