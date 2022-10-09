@@ -46,8 +46,8 @@ class AudioRecorder:
 
         self.frames_per_buffer = 1024  # Record in chunks of 1024 samples
         self.format = pyaudio.paInt16  # 16 bits per sample
-        self.channels = 2
-        self.rate = 22050  # Record at 22050 samples per second
+        self.channels = 1
+        self.rate = 96000  # Record at 96000 samples per second
         self.p = pyaudio.PyAudio()
         self.stream = None
         self.last_audio = None
@@ -67,6 +67,10 @@ class AudioRecorder:
         }
         self.exit_option = '4'
         print("Starting to record with row {} of TSV file".format(self.index + 1))
+
+    def list_devices(self):
+        for i in range(self.p.get_device_count()):
+            print(f'Device {i} -> name: {self.p.get_device_info_by_index(i)["name"]}')
 
     def record(self):
         sentence = self.df.iloc[self.index]['sentence']
