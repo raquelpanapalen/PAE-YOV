@@ -51,8 +51,25 @@ function main() {
     do
         out_file="${OUTPUT_FOLDER}/$(basename $file)"
 
-        # Resample file to 22050 Hz and mix all input channels
-        sox $file -r $OUTPUT_SAMPLE_RATE $out_file remix -
+        # Resample file to "OUTPUT_SAMPLE_RATE Hz" and mix all input channels,
+        # then remove beginning and trailing silences
+        # For the silence part of this command I used the following guide:
+        # https://digitalcardboard.com/blog/2009/08/25/the-sox-of-silence/
+        # Description of each step:
+        # - Resample
+        # - Join all channels into one
+        # - Trim beginning silences
+        # - Leave short duration silences between speech
+        # - Reverse audio
+        # - Trim ending silences
+        # - Reverse audio
+        sox $file -r $OUTPUT_SAMPLE_RATE $out_file \
+            remix - \
+            silence 1 0.1 1% \
+            -1 0.50 1% \
+            reverse \
+            silence 1 0.1 1% \
+            reverse
 
         _progress $i $database_size
         i=$(( i+=1 ))
