@@ -29,14 +29,3 @@ cd TTS
 make install
 ```
 
-# Maintenance
-
-How to keep up to date the repo. Keep in mind that the submodules point to a
-specific commit hash, not to a branch. You can set the branch you want to
-follow, but it will just point to the most recent commit (After running the
-following commands).
-
-```sh
-git pull
-git submodule update --recursive --remote --progress
-```
