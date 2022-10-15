@@ -1,14 +1,16 @@
-# TODO: Simple list of todo's and or questions
+# TODO: Simple list of todo's and/or questions
 
 ## Databases
 - [X] Make a script for database processing
-- [ ] `helena_cat`: do some processing (VAD, level normalization, etc)
+- [X] `helena_cat`: do some processing (VAD, level normalization, etc)
+- [ ] Make script to validate/complete metadata files. During our recording
+      some metadata files where not saved correctly, leaving "gaps".
 
 ## Models
 - [ ] Train a model with the `ca_es_female` database with Tacotron2
-- [ ] Train a vocoder
+- [X] Train a vocoder (Trained hifigan with ljspeech)
 
-# Github
+## Github
 - [ ] Transfer main repo to the `paeyovupc` account ([link](https://docs.github.com/en/repositories/creating-and-managing-repositories/transferring-a-repository)).
 
 ## Questions
