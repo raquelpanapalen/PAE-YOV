@@ -36,14 +36,15 @@ def main(args: Type[argparse.Namespace]):
     if os.path.exists(output_path):
         warn('Output file exists, overwriting!')
 
-    process_file(input_path, output_path, args.split_char, LEGAL_ENDINGS)
+    process_file(input_path, output_path, args.split_char, args.legal_endings)
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='')
+    parser = argparse.ArgumentParser(description='', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('INPUT', type=str, help='Input file')
     parser.add_argument('OUTPUT', type=str, help='Output file')
     parser.add_argument('-s', '--split_char', type=str, help='Delimiter char on the input/output files', default=SPLIT_CHAR)
+    parser.add_argument('-l', '--legal_endings', type=str, help='Accepted line endings', default=LEGAL_ENDINGS)
     args = parser.parse_args()
 
     main(args)
