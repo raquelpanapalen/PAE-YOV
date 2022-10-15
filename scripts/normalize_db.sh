@@ -6,6 +6,7 @@
 . $(dirname "$0")/utils.sh
 
 # Global variables
+ADD_POINTS_SCRIPT="$(dirname $0)/add_points.py"
 DATABASE_FOLDER=""
 OUTPUT_FOLDER=""
 OUTPUT_SAMPLE_RATE=22050
@@ -43,6 +44,12 @@ function main() {
     # Copy the meta files (metadata, license, others...) to the created folder
     for mfile in $meta_files; do
         cp -r "${DATABASE_FOLDER}/${mfile}" "${OUTPUT_FOLDER}/${mfile}"
+
+        if [[ "$mfile" =~ \.txt$ ]]; then
+            out_mfile="$(basename $mfile .txt)_norm.txt"
+            _info_msg "Adding points to \"${DATABASE_FOLDER}/${mfile}\" into \"${OUTPUT_FOLDER}/${out_mfile}\""
+            $ADD_POINTS_SCRIPT "${DATABASE_FOLDER}/${mfile}" "${OUTPUT_FOLDER}/${out_mfile}" > /dev/null
+        fi
     done
 
     # So some processing on the database files
