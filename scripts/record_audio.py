@@ -75,7 +75,7 @@ class AudioRecorder:
     def record(self):
         sentence = self.df.iloc[self.index]['sentence']
         print('*' * 100)
-        print('Index %d: \t %s' % (self.index, sentence))
+        print('Index %05d: \t %s' % (self.index, sentence))
         print('*' * 100)
         input("Press ENTER to start recording (and Ctrl+C to finish)")
         # Create an empty list for audio recording
@@ -111,7 +111,7 @@ class AudioRecorder:
         wf.close()
 
         # Add metadata to data_out
-        self.data_out.add((self.database_name + '_%d' % self.index, sentence))
+        self.data_out.add((self.database_name + '_%05d' % self.index, sentence))
 
     def listen_last(self):
         filename = os.path.join(self.DB_DIR, self.audio_filename.format(self.index))
@@ -166,7 +166,7 @@ class AudioRecorder:
                 lines = ['|'.join(tup) for tup in self.data_out]
 
             with open(out_path + '.txt', 'w') as f:
-                f.write('\n'.join(lines))
+                f.write('\n'.join(sorted(lines)))
 
             df_out.to_csv(out_path + '.tsv', sep='\t', header=False, index=False)
         print('Done recording! Bye :)')
