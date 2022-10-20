@@ -8,3 +8,6 @@ databases/
 
 # Training queue folder
 .train_queue/
+
+# Folder where we keep some WAV files for testing
+wav_tests/
