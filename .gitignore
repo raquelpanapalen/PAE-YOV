@@ -4,4 +4,7 @@ __pycache__/
 *.pyc
 
 # Databases folder
-databases
+databases/
+
+# Training queue folder
+.train_queue/
