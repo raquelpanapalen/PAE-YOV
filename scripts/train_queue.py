@@ -7,6 +7,7 @@ import os
 import shlex
 import subprocess
 import time
+import uuid
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Tuple
@@ -18,6 +19,7 @@ from script_utils import CC_YELLOW, CC_END
 WORK_DIR = Path('/home/user/PAE-YOV/.train_queue')
 COMMANDS_FILE = WORK_DIR / 'train_queue.conf'
 LOG_FILE = WORK_DIR / 'train_queue.log'
+INDEX_FILE = WORK_DIR / 'index.log'
 
 # Time stuff
 START_TIME = datetime.now()
@@ -90,14 +92,25 @@ def run_command(command: List[str]) -> Tuple[int, timedelta, str]:
     start_time = datetime.now()
     proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+    logfile_name = f'stdout_{str(uuid.uuid4().hex)}.log'
+    logfile_path = WORK_DIR / logfile_name
+    with open(INDEX_FILE, 'a') as f:
+        line = f'[{format_time(start_time)}] {logfile_name}: {" ".join(command)}\n'
+        f.write(line)
+
+    logfile = open(logfile_path, 'w')
+
     try:
         while proc.poll() is None:
-            print(proc.stdout.readline().decode(), end='')
+            stdout_data = proc.stdout.readline().decode()
+            print(stdout_data, end='')
+            logfile.write(stdout_data)
 
     except KeyboardInterrupt:
         proc.kill()
         proc.wait()
 
+    logfile.close()
     execution_time = datetime.now() - start_time
     exit_code = proc.poll()
     stderr_output = proc.stderr.read().decode()
