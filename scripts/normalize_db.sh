@@ -53,6 +53,7 @@ function main() {
     done
 
     # So some processing on the database files
+    db_time_before=$(soxi -D $DATABASE_FOLDER/*.wav | awk '{s+=$1} END {printf("time[hh:mm:ss] -> %02d:%02d:%02.2f\n", s/3600, s%3600 / 60, s%60)}')
     i=0
     for file in $database_files
     do
@@ -82,7 +83,10 @@ function main() {
         i=$(( i+=1 ))
     done
     _progress $i $database_size && echo
+    db_time_after=$(soxi -D $OUTPUT_FOLDER/*.wav | awk '{s+=$1} END {printf("time[hh:mm:ss] -> %02d:%02d:%02.2f\n", s/3600, s%3600 / 60, s%60)}')
     _info_msg "Procesing finished!"
+    _info_msg "Time before processing: ${db_time_before}"
+    _info_msg "Time after processing: ${db_time_after}"
 }
 
 # Hide cursor while running script
