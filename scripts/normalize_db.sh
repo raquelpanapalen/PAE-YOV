@@ -9,7 +9,7 @@
 ADD_POINTS_SCRIPT="$(dirname $0)/add_points.py"
 DATABASE_FOLDER=""
 OUTPUT_FOLDER=""
-OUTPUT_SAMPLE_RATE=22050
+OUTPUT_SAMPLE_RATE=16000
 
 function _usage() {
     echo "Usage: $0 <database_folder> <output_database>"

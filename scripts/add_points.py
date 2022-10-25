@@ -8,7 +8,7 @@ from script_utils import *
 
 
 SPLIT_CHAR = '|'
-LEGAL_ENDINGS = '.,;?!'
+LEGAL_ENDINGS = '.,:;?!'
 
 
 def process_file(input_path: str, output_path: str, split_char: str, legal_endings: str) -> None:
