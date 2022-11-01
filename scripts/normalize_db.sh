@@ -7,6 +7,8 @@
 
 # Global variables to modify
 OUTPUT_SAMPLE_RATE=16000
+MIN_AUDIO_LENGTH=1.5
+MAX_AUDIO_LENGTH=15
 
 # Global variables do NOT modify
 ADD_POINTS_SCRIPT="$(dirname $0)/add_points.py"
@@ -80,6 +82,22 @@ function main() {
             reverse \
             vad \
             reverse
+
+        # Check if the new file duration is out of bounds
+        # Sauce https://stackoverflow.com/a/31087503
+        out_file_duration=$(soxi -D $out_file)
+        if (( $(echo "$out_file_duration < $MIN_AUDIO_LENGTH" | bc -l) || $(echo "$out_file_duration > $MAX_AUDIO_LENGTH" | bc -l) )); then
+
+            out_basename_no_extension=$(basename ${out_file%.wav})
+            meta_files=$(ls $OUTPUT_FOLDER | grep -vE "\.wav$")
+            for file in $meta_files; do
+                sed -i "/$out_basename_no_extension/d" "${OUTPUT_FOLDER}/${file}"
+            done
+
+            rm $out_file
+
+            _info_msg "Removed ${out_basename_no_extension}.wav, did not meet duration requirement. Duration: ${out_file_duration} s"
+        fi
 
         _progress $i $database_size
         i=$(( i+=1 ))
