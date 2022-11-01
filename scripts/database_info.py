@@ -56,7 +56,7 @@ def main(args: argparse.Namespace) -> None:
     # Make histogram
     max_duration = int(np.ceil(statistics.minmax[1]))
     fig, axs = plt.subplots(tight_layout=True)
-    N, bins, patches = axs.hist(files_duration, bins=max_duration, zorder=10)
+    N, bins, patches = axs.hist(files_duration, bins=max_duration, range=(0, max_duration), zorder=10)
     axs.set_title(f'Histogram of {db_name}')
     axs.grid(which='both', zorder=0)
     axs.set_xlim(left=0, right=max_duration)
@@ -81,16 +81,21 @@ def main(args: argparse.Namespace) -> None:
             color = plt.cm.viridis(norm(thisfrac))
             thispatch.set_facecolor(color)
 
-    filename = f'{db_name}_histogram.png'
-    plt.savefig(filename, dpi=IMG_DPI)
-    info(f'Saved plot image as: {filename}')
+    # Display and save the image
+    out_path = f'{db_name}_histogram.png'
+    if args.out_folder is not None:
+        out_path = Path(args.out_folder) / out_path
+
+    plt.savefig(out_path, dpi=IMG_DPI)
+    info(f'Saved plot image as: {out_path}')
     plt.show()
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('description')
-    parser.add_argument('DATABASE', help='Database folder')
-    parser.add_argument('-c', '--color_hist', action='store_true', help='Flag to colormap the histogram')
+    parser.add_argument('DATABASE', nargs='+', help='Database folder')
+    parser.add_argument('-o', '--out_folder', help='Output folder for the images')
+    parser.add_argument('--no_color', action='store_true', help='Disable histogram coloring')
     args = parser.parse_args()
 
     main(args)
