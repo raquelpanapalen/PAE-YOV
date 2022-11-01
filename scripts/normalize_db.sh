@@ -5,11 +5,13 @@
 # Includes
 . $(dirname "$0")/utils.sh
 
-# Global variables
+# Global variables to modify
+OUTPUT_SAMPLE_RATE=16000
+
+# Global variables do NOT modify
 ADD_POINTS_SCRIPT="$(dirname $0)/add_points.py"
 DATABASE_FOLDER=""
 OUTPUT_FOLDER=""
-OUTPUT_SAMPLE_RATE=16000
 
 function _usage() {
     echo "Usage: $0 <database_folder> <output_database>"
@@ -93,5 +95,10 @@ function main() {
 trap _cleanup EXIT
 tput civis
 
+STARTTIME=$(date +%s)
 main $@
+ENDTIME=$(date +%s)
+EXEC_TIME=$(($ENDTIME - $STARTTIME))
+EXEC_TIME=$(printf '%dm:%ds\n' $((EXEC_TIME/60)) $((EXEC_TIME%60)))
+_info_msg "Execution time: $EXEC_TIME"
 
