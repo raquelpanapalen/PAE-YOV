@@ -6,6 +6,9 @@ __pycache__/
 # Databases folder
 databases/
 
+#Users folder
+users/
+
 # Training queue folder
 .train_queue/
 
