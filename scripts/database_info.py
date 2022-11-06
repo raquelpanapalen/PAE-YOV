@@ -19,9 +19,13 @@ def get_char_info(file: str) -> dict[str, float]:
     pass
 
 def main(args: argparse.Namespace) -> None:
-    db_folder = Path(args.DATABASE)
+    db_folder = Path(args.DATABASE[0])
     db_name = db_folder.name
+    metadata_file_path = args.metadata
     split_char = args.delimiter
+
+    if metadata_file_path is not None:
+        metadata_file_path = Path(metadata_file_path)
 
     files_duration = np.array([])
     wav_files = db_folder.glob('**/*.wav')
@@ -64,7 +68,7 @@ def main(args: argparse.Namespace) -> None:
     axs.set_ylabel('Count')
 
     # Put a text box with the main statistics on the plot
-    box_text = 'Statictics\n' \
+    box_text = 'Statistics\n' \
                f'Min: {statistics.minmax[0]:.2f} s\n' \
                f'Max: {statistics.minmax[1]:.2f} s\n' \
                f'Mean: {statistics.mean:.2f} s\n' \
@@ -74,7 +78,7 @@ def main(args: argparse.Namespace) -> None:
     plt.gca().add_artist(text_box)
 
     # Color the histogram
-    if args.color_hist:
+    if  not args.no_color:
         fracs = N / N.max()
         norm = colors.Normalize(fracs.min(), fracs.max())
         for thisfrac, thispatch in zip(fracs, patches):
@@ -95,6 +99,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser('description')
     parser.add_argument('DATABASE', nargs='+', help='Database folder')
     parser.add_argument('-o', '--out_folder', help='Output folder for the images')
+    parser.add_argument('-m', '--metadata', help='Metadata file for the database')
+    parser.add_argument('-d', '--delimiter', help='Delimiter char for the metadata file')
     parser.add_argument('--no_color', action='store_true', help='Disable histogram coloring')
     args = parser.parse_args()
 
