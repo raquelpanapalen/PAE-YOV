@@ -63,7 +63,7 @@ def main(args: argparse.Namespace) -> None:
     N, bins, patches = axs.hist(files_duration, bins=max_duration, range=(0, max_duration), zorder=10)
     axs.set_title(f'Histogram of {db_name}')
     axs.grid(which='both', zorder=0)
-    axs.set_xlim(left=0, right=max_duration)
+    axs.set_xlim(left=0, right=max_duration + 1)
     axs.set_xlabel('Duration [s]')
     axs.set_ylabel('Count')
 
