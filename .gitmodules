@@ -5,4 +5,4 @@
 [submodule "YOV-WEB"]
 	path = YOV-WEB
 	url = git@github.com:paeyovupc/YOV-WEB.git
-	branch = master
+	branch = dev
