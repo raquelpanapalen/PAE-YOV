@@ -36,7 +36,7 @@ def extract_transcription(metadata_file_path: Path) -> str:
 
             transcription += line.lstrip('EXT: ').strip('"')
 
-    return transcription
+    return transcription.strip().replace(' .', '.')
 
 
 def main(args: argparse.Namespace):
