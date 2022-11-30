@@ -1,4 +1,7 @@
 # Utils file for python scripts
+import sys
+
+
 # Some ANSI escape sequences for colors, and end
 CC_RED = '\033[0;31m'
 CC_GREEN = '\033[0;32m'
