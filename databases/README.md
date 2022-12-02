@@ -63,7 +63,12 @@ Language: Spanish
 ### Helena_cat
 The database we recorded ourselves. This database can be downloaded on our GitHub repository.
 
-Language: Catalan
+Specifications of this database:
+- 1112 WAV files
+- Language: Catalan
+- Sample Encoding: 16-bit Signed Integer PCM
+- Sample Rate: 16000 Hz
+- Channels: 1 (Mono)
 
 - [Download Helena](helena_cat.zip)
 
