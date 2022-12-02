@@ -8,7 +8,9 @@ __pycache__/
 
 # Databases folder
 databases/*
+!databases/helena_cat.zip
 !databases/README.md
+
 
 #Users folder
 users/

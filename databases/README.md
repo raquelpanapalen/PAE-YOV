@@ -61,11 +61,11 @@ Database of female and male voices
 Language: Spanish
 
 ### Helena_cat
-The database we recorded ourselves. This database can be downloaded on our website [link](TODO).
+The database we recorded ourselves. This database can be downloaded on our GitHub repository.
 
 Language: Catalan
 
-- [Download Helena](TODO)
+- [Download Helena](helena_cat.zip)
 
 ### Carlos de Pablo
 A database given to us by a potential client.
