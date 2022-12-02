@@ -39,6 +39,10 @@ Multispeaker databases with female and female voices.
 
 Language: Catalan
 
+![Histogram](../images/ca_es_female_histogram.png)
+
+![Histogram](../images/ca_es_male_histogram.png)
+
 - [Download Female](https://www.openslr.org/resources/69/ca_es_female.zip)
 - [Download Male](https://www.openslr.org/resources/69/ca_es_male.zip)
 
@@ -47,6 +51,10 @@ Language: Catalan
 Multiple databases of female and male voices in catalan.
 
 Language: Catalan
+
+![Histogram](../images/upc_ca_ona_histogram.png)
+
+![Histogram](../images/upc_ca_pau_histogram.png)
 
 - [Download Ona](http://festcat.talp.cat/download/data/upc_ca_ona_raw-1.0.tar.bz2)
 - [Download Pau](http://festcat.talp.cat/download/data/upc_ca_pau_raw-1.0.tar.bz2)
@@ -70,9 +78,13 @@ Specifications of this database:
 - Sample Rate: 16000 Hz
 - Channels: 1 (Mono)
 
+![Histogram](../images/helena_cat_histogram.png)
+
 - [Download Helena](helena_cat.zip)
 
 ### Carlos de Pablo
 A database given to us by a potential client.
 
 Language: Spanish
+
+![Histogram](../images/recordingsCarlosdePablo_histogram.png)
