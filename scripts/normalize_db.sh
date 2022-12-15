@@ -7,8 +7,8 @@
 
 # Global variables to modify
 OUTPUT_SAMPLE_RATE=16000
-MIN_AUDIO_LENGTH=1.5
-MAX_AUDIO_LENGTH=15
+MIN_AUDIO_LENGTH=1
+MAX_AUDIO_LENGTH=20
 
 # Global variables do NOT modify
 ADD_POINTS_SCRIPT="$(dirname $0)/add_points.py"
