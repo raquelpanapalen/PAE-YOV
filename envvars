@@ -1,0 +1,6 @@
+PAE_DIR="$HOME/PAE-YOV"; export PAE_DIR
+
+# Task spooler environment variables
+TMPDIR="$PAE_DIR/logs-train"; export TMPDIR
+TS_SOCKET="$PAE_DIR/socket-train-queue"; export TS_SOCKET
+TS_SAVELIST="$PAE_DIR/logs-train/savelist.txt"; export TS_SAVELIST
