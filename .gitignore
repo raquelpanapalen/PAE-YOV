@@ -11,6 +11,8 @@ databases/*
 !databases/helena_cat.zip
 !databases/README.md
 
+# logs
+logs*/
 
 #Users folder
 users/
