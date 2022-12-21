@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # Simple script for helping us with queueing the model training
 # Author: aaaaluki
+#
+# DEPRECATED: This script does not work as intended, we are no longer using it,
+# and you shouldn't either :)
 
 import argparse
 import os
